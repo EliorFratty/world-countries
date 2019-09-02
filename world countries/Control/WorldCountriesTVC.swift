@@ -10,7 +10,6 @@ import UIKit
 
 class WorldCountriesTVC: UITableViewController {
 
-    let restApiURL = "https://restcountries.eu/rest/v2/all"
     let cellID = "CountryCell"
     var countries = [Country]()
     var borderingCountriesDict = [String: Country]()
@@ -54,41 +53,11 @@ class WorldCountriesTVC: UITableViewController {
     }
     
     func getCountries () {
-        
-        guard let url = URL(string: restApiURL) else {return}
-        
-            URLSession.shared.dataTask(with: url) { [self] (data, response, error) in
-                guard let dataResponse = data,
-                    error == nil else {
-                        print(error?.localizedDescription ?? "Response Error")
-                        return
-                }
-                do{
-                    let jsonResponse = try JSONSerialization.jsonObject(with:dataResponse, options: [])
-                    
-                    guard let jsonArray = jsonResponse as? NSArray else {
-                        print("error getting json array")
-                        return
-                    }
-                    
-                    for jsonDict in jsonArray {
-                        guard let jsonDict = jsonDict as? NSDictionary else {
-                            print("error getting json dictionary")
-                            return
-                        }
-                        
-                        let country = Country(jsonDict: jsonDict)
-                         self.countries.append(country)
-                        self.borderingCountriesDict[country.alpha3Code] = country
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                } catch let parsingError {
-                    print("Error", parsingError)
-                }
-        }.resume()
+        ApiService.shared.fetchCountries { [self](countries, borderingCountriesDict) in
+            self.countries = countries
+            self.borderingCountriesDict = borderingCountriesDict
+            self.tableView.reloadData()
+        }
     }
 
     

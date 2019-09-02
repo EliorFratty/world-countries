@@ -16,6 +16,7 @@
 		CE477E9F231B9E9F003911AB /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE477E9E231B9E9F003911AB /* Country.swift */; };
 		CE477EA1231B9F1D003911AB /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE477EA0231B9F1D003911AB /* CountryCell.swift */; };
 		CE477EA3231BA7D9003911AB /* BorderingCountriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE477EA2231BA7D9003911AB /* BorderingCountriesVC.swift */; };
+		CE768A38231D025B00E56E82 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE768A37231D025B00E56E82 /* ApiService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		CE477E9E231B9E9F003911AB /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		CE477EA0231B9F1D003911AB /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		CE477EA2231BA7D9003911AB /* BorderingCountriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderingCountriesVC.swift; sourceTree = "<group>"; };
+		CE768A37231D025B00E56E82 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		CE477E63231B9D1C003911AB /* world countries */ = {
 			isa = PBXGroup;
 			children = (
+				CE768A39231D046000E56E82 /* ApiService */,
 				CE477E95231B9D70003911AB /* View */,
 				CE477E97231B9D7F003911AB /* Model */,
 				CE477E96231B9D76003911AB /* Control */,
@@ -141,6 +144,14 @@
 				CE477E6E231B9D1E003911AB /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CE768A39231D046000E56E82 /* ApiService */ = {
+			isa = PBXGroup;
+			children = (
+				CE768A37231D025B00E56E82 /* ApiService.swift */,
+			);
+			path = ApiService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +289,7 @@
 				CE477E9F231B9E9F003911AB /* Country.swift in Sources */,
 				CE477E9D231B9E58003911AB /* WorldCountriesTVC.swift in Sources */,
 				CE477EA1231B9F1D003911AB /* CountryCell.swift in Sources */,
+				CE768A38231D025B00E56E82 /* ApiService.swift in Sources */,
 				CE477E65231B9D1C003911AB /* AppDelegate.swift in Sources */,
 				CE477E9A231B9DE1003911AB /* Extensions.swift in Sources */,
 			);
