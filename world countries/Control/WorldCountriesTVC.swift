@@ -18,17 +18,9 @@ class WorldCountriesTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundColor = .white
-        tableView.register(CountryCell.self, forCellReuseIdentifier: cellID)
+        setupTableView()
         makeNavBar()
-        
-        getCountries { (allContriesFromRESTApi) in
-            self.countries = allContriesFromRESTApi
-
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        getCountries()
     }
 
     // MARK: - Table view data source
@@ -56,12 +48,15 @@ class WorldCountriesTVC: UITableViewController {
         navigationController?.pushViewController(borderingCountriesVC, animated: true)
     }
     
-    func getCountries (completion: @escaping ([Country]) -> ()) {
+    func setupTableView(){
+        tableView.backgroundColor = .white
+        tableView.register(CountryCell.self, forCellReuseIdentifier: cellID)
+    }
+    
+    func getCountries () {
         
         guard let url = URL(string: restApiURL) else {return}
         
-            var countries: [Country] = []
-            
             URLSession.shared.dataTask(with: url) { [self] (data, response, error) in
                 guard let dataResponse = data,
                     error == nil else {
@@ -83,17 +78,19 @@ class WorldCountriesTVC: UITableViewController {
                         }
                         
                         let country = Country(jsonDict: jsonDict)
-                        countries.append(country)
+                         self.countries.append(country)
                         self.borderingCountriesDict[country.alpha3Code] = country
                     }
                     
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 } catch let parsingError {
                     print("Error", parsingError)
                 }
-                completion(countries)
-                
-            }.resume()
+        }.resume()
     }
+
     
     func makeNavBar() {
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
